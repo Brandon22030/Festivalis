@@ -1,9 +1,10 @@
 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock, Phone } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { useAuth } from '@/context/AuthContext';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -13,6 +14,9 @@ const Login = () => {
     phone: '',
     password: ''
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const { signIn } = useAuth();
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -23,10 +27,23 @@ const Login = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Ici on implémentera la logique d'authentification avec Supabase
-    console.log('Tentative de connexion avec:', loginMethod === 'email' ? formData.email : formData.phone);
+    setIsLoading(true);
+    
+    try {
+      if (loginMethod === 'email') {
+        await signIn(formData.email, formData.password);
+        navigate('/');
+      } else {
+        // Pour l'instant, nous n'avons pas implémenté la connexion par téléphone
+        alert('La connexion par téléphone n\'est pas encore implémentée.');
+      }
+    } catch (error) {
+      // L'erreur est déjà gérée dans le contexte d'authentification
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -150,8 +167,9 @@ const Login = () => {
               <button
                 type="submit"
                 className="w-full btn-primary"
+                disabled={isLoading}
               >
-                Se connecter
+                {isLoading ? 'Connexion en cours...' : 'Se connecter'}
               </button>
             </form>
             

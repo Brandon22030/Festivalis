@@ -1,9 +1,10 @@
 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock, User, Phone } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { useAuth } from '@/context/AuthContext';
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -15,6 +16,9 @@ const Register = () => {
     password: '',
     confirmPassword: ''
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const { signUp } = useAuth();
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -25,15 +29,31 @@ const Register = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
     // Vérifier que les mots de passe correspondent
     if (formData.password !== formData.confirmPassword) {
       alert("Les mots de passe ne correspondent pas.");
       return;
     }
-    // Ici on implémentera la logique d'inscription avec Supabase
-    console.log('Inscription avec les données:', formData);
+    
+    setIsLoading(true);
+    
+    try {
+      await signUp(formData.email, formData.password, {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        phone: formData.phone
+      });
+      
+      // Rediriger vers la page de connexion après l'inscription réussie
+      navigate('/login');
+    } catch (error) {
+      // L'erreur est déjà gérée dans le contexte d'authentification
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -187,8 +207,9 @@ const Register = () => {
               <button
                 type="submit"
                 className="w-full btn-primary"
+                disabled={isLoading}
               >
-                S'inscrire
+                {isLoading ? 'Inscription en cours...' : 'S\'inscrire'}
               </button>
             </form>
             

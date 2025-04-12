@@ -9,7 +9,167 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      events: {
+        Row: {
+          address: string | null
+          created_at: string
+          description: string | null
+          end_date: string | null
+          event_date: string
+          id: string
+          image_url: string | null
+          location: string | null
+          organizer_id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string
+          description?: string | null
+          end_date?: string | null
+          event_date: string
+          id?: string
+          image_url?: string | null
+          location?: string | null
+          organizer_id: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          address?: string | null
+          created_at?: string
+          description?: string | null
+          end_date?: string | null
+          event_date?: string
+          id?: string
+          image_url?: string | null
+          location?: string | null
+          organizer_id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          first_name: string | null
+          id: string
+          last_name: string | null
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          first_name?: string | null
+          id: string
+          last_name?: string | null
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          first_name?: string | null
+          id?: string
+          last_name?: string | null
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      registrations: {
+        Row: {
+          created_at: string
+          event_id: string
+          id: string
+          payment_status: string
+          quantity: number
+          ticket_id: string | null
+          total_price: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          event_id: string
+          id?: string
+          payment_status?: string
+          quantity?: number
+          ticket_id?: string | null
+          total_price: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          event_id?: string
+          id?: string
+          payment_status?: string
+          quantity?: number
+          ticket_id?: string | null
+          total_price?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "registrations_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "registrations_ticket_id_fkey"
+            columns: ["ticket_id"]
+            isOneToOne: false
+            referencedRelation: "tickets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tickets: {
+        Row: {
+          capacity: number | null
+          created_at: string
+          description: string | null
+          event_id: string
+          id: string
+          name: string
+          price: number
+          updated_at: string
+        }
+        Insert: {
+          capacity?: number | null
+          created_at?: string
+          description?: string | null
+          event_id: string
+          id?: string
+          name: string
+          price: number
+          updated_at?: string
+        }
+        Update: {
+          capacity?: number | null
+          created_at?: string
+          description?: string | null
+          event_id?: string
+          id?: string
+          name?: string
+          price?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tickets_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
