@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -25,24 +26,27 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				primary: {
-					DEFAULT: 'hsl(var(--primary))',
+					DEFAULT: '#4A90E2', // Bleu ciel
 					foreground: 'hsl(var(--primary-foreground))'
 				},
 				secondary: {
-					DEFAULT: 'hsl(var(--secondary))',
+					DEFAULT: '#F5A623', // Orange doux
 					foreground: 'hsl(var(--secondary-foreground))'
 				},
+				accent: {
+					DEFAULT: '#27AE60', // Vert émeraude
+					foreground: 'hsl(var(--accent-foreground))'
+				},
 				destructive: {
-					DEFAULT: 'hsl(var(--destructive))',
+					DEFAULT: '#E74C3C', // Rouge pour alertes
 					foreground: 'hsl(var(--destructive-foreground))'
+				},
+				success: {
+					DEFAULT: '#2ECC71', // Vert pour confirmations
 				},
 				muted: {
 					DEFAULT: 'hsl(var(--muted))',
 					foreground: 'hsl(var(--muted-foreground))'
-				},
-				accent: {
-					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))'
 				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
@@ -51,6 +55,10 @@ export default {
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
+				},
+				neutral: {
+					light: '#F8F9FA', // Gris clair
+					dark: '#4A4A4A', // Gris foncé
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
@@ -67,6 +75,9 @@ export default {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			fontFamily: {
+				sans: ['Roboto', 'sans-serif'],
 			},
 			keyframes: {
 				'accordion-down': {
