@@ -1,6 +1,5 @@
-
 import { useState } from 'react';
-import { Calendar, Clock, MapPin, Image, Info, Check } from 'lucide-react';
+import { Calendar, Clock, MapPin, Image, Info, Check, Ticket } from 'lucide-react';
 
 interface ScheduleItem {
   time: string;
@@ -45,7 +44,11 @@ const EventForm = () => {
   
   const updateTicketType = (index: number, field: keyof TicketType, value: string | number) => {
     const newTypes = [...ticketTypes];
-    newTypes[index][field] = value;
+    if (field === 'price') {
+      newTypes[index][field] = typeof value === 'number' ? value : parseInt(value as string) || 0;
+    } else {
+      newTypes[index][field as 'name' | 'currency'] = value as string;
+    }
     setTicketTypes(newTypes);
   };
   
