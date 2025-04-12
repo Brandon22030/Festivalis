@@ -26,23 +26,23 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				primary: {
-					DEFAULT: '#4A90E2', // Bleu ciel
+					DEFAULT: '#1EAEDB', // Updated to bright blue
 					foreground: 'hsl(var(--primary-foreground))'
 				},
 				secondary: {
-					DEFAULT: '#F5A623', // Orange doux
+					DEFAULT: '#F97316', // Updated to bright orange
 					foreground: 'hsl(var(--secondary-foreground))'
 				},
 				accent: {
-					DEFAULT: '#27AE60', // Vert émeraude
+					DEFAULT: '#8B5CF6', // Updated to vivid purple
 					foreground: 'hsl(var(--accent-foreground))'
 				},
 				destructive: {
-					DEFAULT: '#E74C3C', // Rouge pour alertes
+					DEFAULT: '#E74C3C', // Red for alerts
 					foreground: 'hsl(var(--destructive-foreground))'
 				},
 				success: {
-					DEFAULT: '#2ECC71', // Vert pour confirmations
+					DEFAULT: '#2ECC71', // Green for confirmations
 				},
 				muted: {
 					DEFAULT: 'hsl(var(--muted))',
@@ -57,8 +57,8 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 				neutral: {
-					light: '#F8F9FA', // Gris clair
-					dark: '#4A4A4A', // Gris foncé
+					light: '#F8F9FA', 
+					dark: '#4A4A4A',
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',

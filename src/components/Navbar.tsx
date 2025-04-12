@@ -1,13 +1,23 @@
 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X, Calendar, User, Plus } from 'lucide-react';
+import { useAuth } from '@/context/AuthContext';
+import { Button } from '@/components/ui/button';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate('/login');
   };
 
   return (
@@ -34,12 +44,27 @@ const Navbar = () => {
 
           {/* Boutons de connexion/inscription pour Desktop */}
           <div className="hidden md:flex items-center gap-4">
-            <Link to="/login" className="btn-outline">
-              Connexion
-            </Link>
-            <Link to="/register" className="btn-primary">
-              Inscription
-            </Link>
+            {user ? (
+              <div className="flex items-center gap-4">
+                <Avatar className="h-8 w-8 bg-primary/20">
+                  <AvatarFallback className="text-primary">
+                    {user.email?.charAt(0).toUpperCase() || 'U'}
+                  </AvatarFallback>
+                </Avatar>
+                <Button variant="outline" size="sm" onClick={handleSignOut}>
+                  Déconnexion
+                </Button>
+              </div>
+            ) : (
+              <>
+                <Link to="/login" className="btn-outline">
+                  Connexion
+                </Link>
+                <Link to="/register" className="btn-primary">
+                  Inscription
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Menu Burger pour Mobile */}
@@ -78,20 +103,28 @@ const Navbar = () => {
                 Créer un événement
               </Link>
               <div className="flex flex-col gap-2 px-4 pt-4 border-t border-gray-200">
-                <Link 
-                  to="/login" 
-                  className="btn-outline w-full flex justify-center"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Connexion
-                </Link>
-                <Link 
-                  to="/register" 
-                  className="btn-primary w-full flex justify-center"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Inscription
-                </Link>
+                {user ? (
+                  <Button variant="outline" onClick={handleSignOut}>
+                    Déconnexion
+                  </Button>
+                ) : (
+                  <>
+                    <Link 
+                      to="/login" 
+                      className="btn-outline w-full flex justify-center"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Connexion
+                    </Link>
+                    <Link 
+                      to="/register" 
+                      className="btn-primary w-full flex justify-center"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Inscription
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </div>

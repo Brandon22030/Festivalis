@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import EventDetail from "./pages/EventDetail";
 import CreateEvent from "./pages/CreateEvent";
+import Events from "./pages/Events";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/events" element={<Events />} />
             <Route path="/event/:id" element={<EventDetail />} />
             <Route path="/create-event" element={
               <ProtectedRoute>
