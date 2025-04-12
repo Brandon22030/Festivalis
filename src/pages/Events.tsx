@@ -11,16 +11,14 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
+// Define a type that matches the EventCard props
 type Event = {
   id: string;
   title: string;
-  event_date: string;
+  date: string;
   location: string;
-  image_url: string;
-  organizer: {
-    first_name: string;
-    last_name: string;
-  };
+  imageUrl: string;
+  organizer: string;
   category?: string;
   attendees?: number;
   time?: string;
@@ -53,6 +51,7 @@ const Events = () => {
     try {
       setLoading(true);
       
+      // Fetch events with join to organizer profiles
       const { data, error } = await supabase
         .from('events')
         .select(`
@@ -61,10 +60,8 @@ const Events = () => {
           event_date,
           location,
           image_url,
-          organizer_id (
-            id
-          ),
-          profiles (
+          organizer_id,
+          profiles:organizer_id(
             first_name,
             last_name
           )
@@ -95,9 +92,10 @@ const Events = () => {
         // Default image if none provided
         const imageUrl = event.image_url || "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-4.0.3";
 
-        // Organizer name (using first and last name from profiles)
-        const organizerFirstName = event.profiles?.first_name || "Unknown";
-        const organizerLastName = event.profiles?.last_name || "Organizer";
+        // Organize profile info
+        const profile = event.profiles || {};
+        const organizerFirstName = profile.first_name || "Unknown";
+        const organizerLastName = profile.last_name || "Organizer";
         const organizer = `${organizerFirstName} ${organizerLastName}`;
 
         return {
