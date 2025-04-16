@@ -1,73 +1,66 @@
-# Welcome to your Lovable project
+# Festivalis
 
-## Project info
+Festivalis est une plateforme d'événements communautaires conçue spécifiquement pour le Bénin. Elle simplifie l'organisation et la découverte d'événements culturels, de cérémonies traditionnelles, de mariages et plus encore.
 
-**URL**: https://lovable.dev/projects/8d2fd350-999a-42de-abe3-74877a7b081a
+## Fonctionnalités
 
-## How can I edit this code?
+- Recherche d'événements par localité et catégorie
+- Création et gestion d'événements
+- Interface utilisateur adaptée au contexte béninois
+- Support multilingue (français)
+- Intégration avec Supabase pour la gestion des données
 
-There are several ways of editing your application.
+## Technologies utilisées
 
-**Use Lovable**
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS
+- Radix UI
+- Supabase
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/8d2fd350-999a-42de-abe3-74877a7b081a) and start prompting.
+## Prérequis
 
-Changes made via Lovable will be committed automatically to this repo.
+- Node.js (version LTS recommandée)
+- npm ou yarn
 
-**Use your preferred IDE**
+## Installation
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+```bash
+# Cloner le dépôt
+git clone https://github.com/votre-username/festivalis.git
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+# Accéder au répertoire
+cd festivalis
 
-Follow these steps:
+# Installer les dépendances
+npm install
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Démarrer le serveur de développement
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Structure du projet
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```
+src/
+  ├── components/     # Composants réutilisables
+  ├── context/        # Contextes React
+  ├── hooks/          # Hooks personnalisés
+  ├── integrations/   # Intégrations externes (Supabase)
+  ├── lib/            # Utilitaires et configurations
+  ├── pages/          # Pages de l'application
+  └── main.tsx        # Point d'entrée de l'application
+```
 
-**Use GitHub Codespaces**
+## Contribution
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou à soumettre une pull request.
 
-## What technologies are used for this project?
+## Licence
 
-This project is built with:
+Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Contact
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/8d2fd350-999a-42de-abe3-74877a7b081a) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes it is!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Pour toute question ou suggestion, contactez-nous à contact@festivalis.bj
